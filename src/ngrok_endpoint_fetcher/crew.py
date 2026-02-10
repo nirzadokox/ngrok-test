@@ -1,12 +1,11 @@
 import os
+import sys
+from pathlib import Path
 
 from crewai import LLM
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-from crewai_tools import (
-	ScrapeWebsiteTool
-)
-from ngrok_endpoint_fetcher.tools.fetch_ngrok import FetchNgrokTool
+from crewai.mcp import MCPServerStdio
 
 
 
@@ -18,26 +17,28 @@ class NgrokEndpointFetcherCrew:
     
     @agent
     def command_executor(self) -> Agent:
+        # Get path to the MCP server script
+        mcp_server_path = Path(__file__).parent / "mcp_server.py"
         
         return Agent(
             config=self.agents_config["command_executor"],
-            
-            
-            tools=[				FetchNgrokTool(),
-				ScrapeWebsiteTool()],
             reasoning=False,
             max_reasoning_attempts=None,
             inject_date=True,
             allow_delegation=False,
             max_iter=25,
             max_rpm=None,
-            
             max_execution_time=None,
             llm=LLM(
                 model="openai/gpt-4o-mini",
                 temperature=0.7,
             ),
-            
+            mcps=[
+                MCPServerStdio(
+                    command=sys.executable,  # Python interpreter
+                    args=[str(mcp_server_path)],
+                )
+            ]
         )
     
 
