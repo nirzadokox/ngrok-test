@@ -1,0 +1,7 @@
+---
+execute_web_request:
+  description: Use web scraping tools to simulate curl https://85e00b2844ad.ngrok.app
+    and analyze the complete HTTP response including headers, status, and body content
+  expected_output: Detailed analysis of the HTTP response equivalent to curl output,
+    including status information and response content
+  agent: command_executor

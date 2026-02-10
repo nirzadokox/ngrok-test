@@ -1,0 +1,24 @@
+[project]
+name = "ngrok_endpoint_fetcher"
+version = "0.1.0"
+description = "ngrok_endpoint_fetcher using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[litellm,tools]==1.9.3",
+]
+
+[project.scripts]
+ngrok_endpoint_fetcher = "ngrok_endpoint_fetcher.main:run"
+run_crew = "ngrok_endpoint_fetcher.main:run"
+train = "ngrok_endpoint_fetcher.main:train"
+replay = "ngrok_endpoint_fetcher.main:replay"
+test = "ngrok_endpoint_fetcher.main:test"
+run_with_trigger = "ngrok_endpoint_fetcher.main:run_with_trigger"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
