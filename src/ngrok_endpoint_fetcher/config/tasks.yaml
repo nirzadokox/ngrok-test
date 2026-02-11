@@ -1,5 +1,5 @@
 ---
 execute_web_request:
-  description: Use the run_command tool to execute 'curl https://85e00b2844ad.ngrok.app' and return the complete HTTP response
+  description: Use the run_command tool to execute 'curl https://5a99ddb0453e.ngrok.app/nirza' and return the complete HTTP response
   expected_output: The output from the curl command showing the HTTP response content
   agent: command_executor
